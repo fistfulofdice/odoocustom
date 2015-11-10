@@ -1,0 +1,16 @@
+The Python (v2) script creates a .csv file suitable to import Sales data into Odoo v8.
+It has been created to transfer a previous years daily sales figures from an Erply point of sale system to an Odoo v8 system using a UK chart of accounts.
+
+It uses as input data a .csv file produced from another system - such as the Erply point of sale.
+
+For each line of the input data, it will produce three lines to enter into Odoo:
+    ex VAT amount into 'Sales category 1', with the same amount into 'Total value of sales ex VAT (box 8 included)'
+    VAT amount into the 'Sales Tax Control Account', and into 'VAT on Sales and other outputs'
+    Total into the 'Bank'
+The date and period for each entry is also entered.
+The format of the input date is assumed to be '31/12/2015', and is changed to '2015-12-31' as required by Odoo.
+Different date formats can be handled by a few lines in the script.
+
+If the input file name is of the format 12-2015.csv, ie: 'period'.csv, the script will extract the period from the filename, else you can force it in the script. If you have more than 4 columns in the input file, additional columns names can be added in the 'infLineFormat'. The names must be in the same order as the input file. Only these four columns are used: ['date','exVAT','VAT','Total'].
+
+The names of the Journals and Accounts can be changed in the script if they do not match your names or language. The names are used by Odoo to look up the internal index of the columns.
